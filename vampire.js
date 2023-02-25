@@ -43,19 +43,27 @@ class Vampire {
   // * when comparing Ansel and Sarah, Ansel is the closest common anscestor.
   // * when comparing Ansel and Andrew, Ansel is the closest common anscestor.
   closestCommonAncestor(vampire) {
-    let currentVamp = this;
-    let targetCreatorVamp = vampire;
-    while (currentVamp.creator) {
-      currentVamp = currentVamp.creator;
+    let targetVamp = vampire;
+    
+    /**
+     * For each node in this current vampire path,
+     * compare it with each node in target vampire path
+     */
 
-      while (targetCreatorVamp.creator) {
-        targetCreatorVamp = targetCreatorVamp.creator;
-        if (targetCreatorVamp.name == currentVamp.name) {
-           return targetCreatorVamp;
+    while (targetVamp) {
+      //reset curent vampire path for each item in the taget path
+      let currentVamp = this;
+      
+      while (currentVamp) {
+        if (currentVamp.name == targetVamp.name) {
+          return currentVamp;
         }
+        currentVamp = currentVamp.creator;
       }
+      targetVamp = targetVamp.creator;
     }
   }
+
 }
 
 module.exports = Vampire;
