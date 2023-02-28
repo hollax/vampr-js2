@@ -6,7 +6,6 @@ class Vampire {
     this.creator = null;
   }
 
-  /** Simple tree methods **/
 
   // Adds the vampire as an offspring of this vampire
   addOffspring(vampire) {
